@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+
+  <h1 th:text="${headline}"></h1>
+
+  <hr>
+
+  <table th:if="${showTable}">
+    <tr>
+      <th>Titel</th>
+      <th>Beschreibung</th>
+      <th>Erzeugt am</th>
+      <th>Erledigt</th>
+    </tr>
+
+    <tr th:each="todo : ${todos}">
+      <td th:text="${todo.titel}"></td>
+      <td th:text="${todo.beschreibung}"></td>
+      <td th:text="${todo.erzeugtAm}"></td>
+      <td th:text="${todo.erledigt}"></td>
+    </tr>
+  </table>
+
+</body>
+</html>
