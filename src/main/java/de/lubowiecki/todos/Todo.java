@@ -1,13 +1,24 @@
 package de.lubowiecki.todos;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
-// POJO - Plain Old Java Object
+@Entity
+@Table(name = "todos")
 public class Todo {
 
+    @Id // Primärschlüssel
+    @GeneratedValue // Autoincrement
+    private int id;
+
+    @Column(length = 100)
     private String titel;
+
     private String beschreibung;
+
     private LocalDateTime erzeugtAm;
+
     private boolean erledigt;
 
     public Todo() {
@@ -23,6 +34,14 @@ public class Todo {
 
     public Todo(String titel, String beschreibung) {
         this(titel, beschreibung, false);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitel() {

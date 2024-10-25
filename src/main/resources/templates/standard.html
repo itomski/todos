@@ -3,29 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
     <title>Title</title>
 </head>
 <body>
 
-  <h1 th:text="${headline}"></h1>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <nav>
+          <ul class="nav">
+            <li class="nav-item">
+              <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/add" class="nav-link">Add</a>
+            </li>
+            <li class="nav-item">
+              <a href="list" class="nav-link">List</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
 
-  <hr>
+    <div class="row">
+      <div class="col">
 
-  <table th:if="${showTable}">
-    <tr>
-      <th>Titel</th>
-      <th>Beschreibung</th>
-      <th>Erzeugt am</th>
-      <th>Erledigt</th>
-    </tr>
+        <h1 th:text="${headline}"></h1>
 
-    <tr th:each="todo : ${todos}">
-      <td th:text="${todo.titel}"></td>
-      <td th:text="${todo.beschreibung}"></td>
-      <td th:text="${todo.erzeugtAm}"></td>
-      <td th:text="${todo.erledigt}"></td>
-    </tr>
-  </table>
+        <hr>
 
+        <table th:if="${showTable}" class="table table-striped">
+
+          <thead>
+            <tr>
+              <th>Titel</th>
+              <th>Beschreibung</th>
+              <th>Erzeugt am</th>
+              <th>Erledigt</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr th:each="todo : ${todos}">
+              <td th:text="${todo.titel}"></td>
+              <td th:text="${todo.beschreibung}"></td>
+              <td th:text="${todo.erzeugtAm}"></td>
+              <td th:text="${todo.erledigt}"></td>
+              <td>
+                <a th:href="@{'/delete/' + ${todo.id}}" class="btn btn-danger">Löschen</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
